@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CameraController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('newCostumer');
+// })->name('hallo');
+
+Route::get('/',[CameraController::class,'index'])->name('hallo');
+Route::post('/savenewcamera',[CameraController::class,'savenewcamera'])->name('savenewcamera');
