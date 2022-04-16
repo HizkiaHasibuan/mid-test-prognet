@@ -1,10 +1,6 @@
-@extends('layout.app')
+@extends('dashboard.layouts.main')
 
-@section('title','New Camera')
-
-@section('header','Add new camera')
-
-@section('contents')
+@section('container')
 
     <form action="{{ route ('savenewcamera') }}" method="POST" enctype="multipart/form-data">
         @csrf
