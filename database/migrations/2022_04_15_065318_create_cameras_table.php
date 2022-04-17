@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('gambar');
             $table->integer('harga');
             $table->enum('status',['tersedia','dipinjam'])->default('tersedia');
+            $table->integer('isDelete')->default('0');
             $table->timestamps();
         });
     }

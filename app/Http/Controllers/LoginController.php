@@ -24,6 +24,11 @@ class LoginController extends Controller
             return redirect()->intended('/dashboard');
         }
 
+        // $cekAdmin=$cekAdmin->isAdmin;
+        //     if($cekAdmin=1){
+        //         return redirect()->intended('/dashboardAdmin', compact('cekAdmin'));
+        //     }
+
         return back()->with('false', 'Gagal Masuk, Email atau Password Tidak Sesuai');
     }
 

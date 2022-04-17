@@ -8,20 +8,35 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('user/profil*') ? 'active' : '' }}" aria-current="page" href="{{ route('hallo') }}">
+                <a class="nav-link {{ Request::is('user/profil*') ? 'active' : '' }}" aria-current="page" href="{{ route('user-profil') }}">
                     {{-- user-profil --}}
                     <span data-feather="user"></span>
                     Profil
                 </a>
             </li>
-            @cannot('is-admin')
+
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('user/simpanan*') ? 'active' : '' }}" href="{{ route('hallo') }}">
-                    <span data-feather="dollar-sign"></span>
-                    Simpanan
+                <a class="nav-link {{ Request::is('user/simpanan*') ? 'active' : '' }}" href="{{ route('listkamera') }}">
+                    <span data-feather="camera"></span>
+                    Lihat Kamera
                 </a>
             </li>
-            @endcannot
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ Request::is('user/profil*') ? 'active' : '' }}" aria-current="page" href="{{ route('hallo') }}">
+                    
+                    <span data-feather="camera"></span>
+                    New Camera
+                </a>
+            </li> --}}
+
+            {{-- @cannot('is-admin')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('user/simpanan*') ? 'active' : '' }}" href="{{ route('listkamera') }}">
+                    <span data-feather="camera"></span>
+                    Lihat Kamera
+                </a>
+            </li>
+            @endcannot --}}
             {{-- <li class="nav-item">
                 <a class="nav-link {{ Request::is('user/bunga*') ? 'active' : '' }}" href="{{ route('user-bunga') }}">
                     <span data-feather="percent"></span>

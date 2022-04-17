@@ -2,20 +2,51 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('user/dashboard') ? 'active' : '' }}" aria-current="page" href="{{ route('user-dashboard') }}">
+                <a class="nav-link {{ Request::is('/dashboard') ? 'active' : '' }}" aria-current="page" href="{{ route('dashboard') }}">
                     <span data-feather="home"></span>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('user/profil*') ? 'active' : '' }}" aria-current="page" href="{{ route('user-profil') }}">
+                    {{-- user-profil --}}
                     <span data-feather="user"></span>
                     Profil
                 </a>
             </li>
-        </ul>
 
-        @can('is-admin')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('user/simpanan*') ? 'active' : '' }}" href="{{ route('listkamera') }}">
+                    <span data-feather="camera"></span>
+                    Lihat Kamera
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('user/profil*') ? 'active' : '' }}" aria-current="page" href="{{ route('hallo') }}">
+                    {{-- user-profil --}}
+                    <span data-feather="camera"></span>
+                    New Camera
+                </a>
+            </li>
+
+            @cannot('is-admin')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('user/simpanan*') ? 'active' : '' }}" href="{{ route('listkamera') }}">
+                    <span data-feather="camera"></span>
+                    Lihat Kamera
+                </a>
+            </li>
+            @endcannot
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ Request::is('user/bunga*') ? 'active' : '' }}" href="{{ route('user-bunga') }}">
+                    <span data-feather="percent"></span>
+                    Bunga
+                </a>
+            </li>
+            @endcannot
+        </ul> --}}
+
+        {{-- @can('is-admin')
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Administrator</span>
         </h6>
@@ -59,6 +90,6 @@
                     <button type="submit" class="nav-link px-3 bg-light border-0"><span data-feather="log-out"></span> Sign Out</a></button>
                   </form>
             </li>
-        </ul>
+        </ul> --}}
     </div>
 </nav>

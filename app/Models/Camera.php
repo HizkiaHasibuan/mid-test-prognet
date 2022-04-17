@@ -15,6 +15,7 @@ class Camera extends Model
         'gambar',
         'harga',
         'status',
+        'isDelete'
     ];
 
     public function transaksi(){
