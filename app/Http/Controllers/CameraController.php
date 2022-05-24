@@ -76,7 +76,8 @@ class CameraController extends Controller
         //     'image' => 'required|image',
         // ]);
 
-        $gambar=$request->file('image')->store('picture');
+        $filename = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $filename);
 
         // return $request;
         transaksi::create([
@@ -84,7 +85,7 @@ class CameraController extends Controller
             'id_kamera' => $camera,
             'tgl_pinjam' => $request->pinjam,
             'tgl_kembali' => $request->kembali,
-            'bukti_pembayaran' =>$gambar
+            'bukti_pembayaran' =>$filename
         ]);
         return redirect()->route ('hallo');
     }

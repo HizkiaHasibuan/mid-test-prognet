@@ -51,7 +51,7 @@
                 <td class="text-center">{{ $pesan->id_kamera }}</td>
                 <td class="text-center">{{ $pesan->tgl_pinjam }}</td>
                 <td class="text-center">{{ $pesan->tgl_kembali }}</td>
-                <td><img src="{{ asset ('storage/' . $pesan->bukti_pembayaran) }}" style="width:180px;height:140px;" border="3"></td>
+                <td><img src="{{ ('images/'.$pesan->bukti_pembayaran) }}" style="width:180px;height:140px;" border="3"></td>
                 <td class="text-center">{{ $pesan->status }}</td>
                 <td>
                     <form action="{{ route('konfirmasi',$pesan->id) }}" method="POST">
