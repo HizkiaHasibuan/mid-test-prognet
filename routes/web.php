@@ -29,15 +29,16 @@ Route::get('/',[CameraController::class,'index'])->middleware('auth')->name('hal
 Route::post('/savenewcamera',[CameraController::class,'savenewcamera'])->middleware('auth')->name('savenewcamera');
 Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::post('/ceklogin',[LoginController::class,'authenticate'])->name('ceklogin');
-Route::post('/signout', [LoginController::class, 'signout'])                        ->name('signout');
+Route::post('/signout', [LoginController::class, 'signout'])->name('signout');
 Route::get('/register',[CustomerController::class,'index'])->name('register');
 Route::post('/savenewcustomer',[CustomerController::class,'savenewcustomer'])->name('savenewcustomer');
 
+Route::get('/newkamera',[CameraController::class,'newkamera'])->middleware('auth')->name('newkamera');
 Route::get ('/listkamera',[CameraController::class, 'listkamera'])->middleware('auth')->name('listkamera');
 Route::post('/{id}/delete',[CameraController::class,'deletecamera'])->name('deletecamera');
 Route::post('/{id}/formpesan',[CameraController::class, 'formpesan'])->middleware('auth')->name('formpesan');
 Route::post('/{id}/pesan',[CameraController::class,'pesan'])->middleware('auth')->name('pesan');
-
+Route::get ('/editkamera/{id}', [CameraController::class, 'editkamera']) ->middleware('auth')->name('editkamera');
 Route::get ('/listkameraadmin',[CameraController::class, 'listkameraadmin'])->middleware('auth')->name('listkameraadmin');
 
 Route::get ('/listpesan',[CameraController::class, 'listpesan'])->middleware('auth')->name('listpesan');

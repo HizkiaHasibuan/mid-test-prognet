@@ -10,6 +10,10 @@ use App\Models\transaksi;
 class CameraController extends Controller
 {
     public function index(){
+        return view('dashboard.layouts.index');
+    }
+    
+    public function newkamera(){
         return view('camera.newCamera');
     }
 
@@ -22,16 +26,20 @@ class CameraController extends Controller
             'image' => 'required|image',
         ]);
 
-        $gambar=$request->file('image')->store('storage/picture');
-        // $gambar=$request->file('image')->store('public');
+        // $gambar=$request->file('image')->store('picture');
+        // $gambar=$request->file('image')->store('/public/post-images');
+        // return $gambar;
         
+        $filename = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $filename);
+
         Camera::create([
             'kamera' => $request->camera,
             'deskripsi' => $request->description,
             'harga' => $request->harga,
-            'gambar' => $gambar
+            'gambar' => $filename
         ]);
-        return redirect()->route ('hallo');//listcamera
+        return redirect ()->route ('hallo');
     }
 
     public function listkamera(){
@@ -110,4 +118,47 @@ class CameraController extends Controller
 
         return view('admin.listcamera', compact('kameras'));
     }
+
+    public function editkamera($id){
+        $user = Camera::find($id);
+        $pengguna_id = $user->id;
+
+        if ($user->isAdmin == 1) {
+            $customer = User::find($pengguna_id);
+            return view('customer.editprofil', compact('customer','user'));
+        }
+
+        $customer = User::find($pengguna_id);
+        return view('customer.editprofil', compact('customer','user'));
+    }
+
+    public function saveedit(Request $request, $id){
+        $user = User::find($id);
+        $pengguna_id = $user->id;
+
+        $request->validate([
+            'nama' => 'required|min:1',
+            'alamat' => 'required|min:1',
+            'no_ktp' => 'required|min:12',
+            'email' => 'required',
+        ]);
+
+        $user = User::find($pengguna_id);
+        $user->name = $request->nama;
+        $user->alamat = $request->alamat;
+        $user->no_ktp = $request->no_ktp;            
+        $user->save();
+
+        return redirect()->route('user-profil')->with('true', 'Berhasil Mengubah Data!');
+        
+        if ($user->isAdmin == 1) {
+            $admin = User::find($pengguna_id);
+            }
+            $admin->name = $request->nama;
+            $admin->alamat = $request->alamat;
+            $admin->no_ktp = $request->no_ktp;            
+            $admin->save();
+
+            return redirect()->route('user-profil')->with('true', 'Berhasil Mengubah Data!');
+        }
 }

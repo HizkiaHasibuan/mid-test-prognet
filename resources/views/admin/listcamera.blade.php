@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.mainAdmin')
+@extends('dashboard.layouts.main')
 
 @section('css')
 <style>
@@ -46,13 +46,12 @@
                 <td style="text-align: center">{{ $loop->iteration }}</td>
                 <td class="text-center">{{ $kamera->kamera}}</td>
                 <td class="text-center">{{ $kamera->deskripsi }}</td>
-                <td><img src="{{ asset ('storage/' . $kamera->gambar) }}" style="width:180px;height:140px;" border="3"></td>
+                <td><img src="{{ ('images/'.$kamera->gambar) }}" style="width:180px;height:140px;" border="3"></td>
                 <td class="text-center">{{ $kamera->status }}</td>
                 <td>
                     <form action="{{ route('deletecamera',$kamera->id) }}" method="POST">
                         @csrf
                         <div class="btn-group" role="group">
-                            <a type="button" class="btn btn-success" href="#">Pesan</a>
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
                     </div>
                     </form>
